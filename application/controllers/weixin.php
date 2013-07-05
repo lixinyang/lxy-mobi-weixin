@@ -15,7 +15,7 @@ class Weixin extends CI_Controller {
 	{
 		//echo 'hi weixin';
 		//$this->load->library('Weixinools');
-		$this->weixinutil->parse('weixiao', $_GET, $GLOBALS["HTTP_RAW_POST_DATA"]);
+		$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
 		$tools = $this->weixinutil;
 		switch ($tools->request_type) {
 			case Weixinutil::TYPE_NEW_MESSAGE:
