@@ -6,7 +6,7 @@ function weixin_log($txt) {
 /**
  * design as a tool, not a framework
  */
-class Weixintools
+class Weixinutil
 {
 	const TYPE_NEW_MESSAGE = 'new_message';
 	const TYPE_SUBSCRIBE = 'subscribe';

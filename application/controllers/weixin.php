@@ -6,7 +6,7 @@ class Weixin extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url','html','form'));
-		$this->load->library(array('Weixintools'));
+		$this->load->library(array('Weixinutil'));
 	}
 
 	/**
@@ -15,8 +15,8 @@ class Weixin extends CI_Controller {
 	{
 		echo 'hi weixin';
 		//$this->load->library('Weixinools');
-		$this->weixintools->parse('weixiao', $_GET, $GLOBALS["HTTP_RAW_POST_DATA"]);
-		$tools = $this->weixintools;
+		$this->weixinutil->parse('weixiao', $_GET, $GLOBALS["HTTP_RAW_POST_DATA"]);
+		$tools = $this->weixinutil;
 		switch ($tools->request_type) {
 			case WeixinTools::TYPE_NEW_MESSAGE:
 				$keyword = $tools->message->content;
