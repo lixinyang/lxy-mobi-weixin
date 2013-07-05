@@ -30,25 +30,25 @@ class Weixinutil
 		$this->token = $token;
         //签名不合法
         if(!$this->checkSignature($get)){
-        	$this->request_type = WeixinTools::TYPE_SIGNATURE_ERROR;
+        	$this->request_type = Weixinutil::TYPE_SIGNATURE_ERROR;
         }
 		elseif (!empty($_GET["echostr"])) {
-			$this->request_type = WeixinTools::TYPE_VALIDATE_URL;
+			$this->request_type = Weixinutil::TYPE_VALIDATE_URL;
 		}
 		elseif (!empty($raw_post)) {
 			$this->message = new Message($raw_post);
 			if($this->message->msg_type == Message::TYPE_TEXT and $this->message->content == 'Hello2BizUser') {
-				$this->request_type = WeixinTools::TYPE_SUBSCRIBE;
+				$this->request_type = Weixinutil::TYPE_SUBSCRIBE;
 			}
 			elseif ($this->message->msg_type == Message::TYPE_EVENT and $this->message->event = 'unsubscribe') {
-				$this->request_type = WeixinTools::TYPE_UNSUBSCRIBE;
+				$this->request_type = Weixinutil::TYPE_UNSUBSCRIBE;
 			}
 			else {
-				$this->request_type = WeixinTools::TYPE_NEW_MESSAGE;
+				$this->request_type = Weixinutil::TYPE_NEW_MESSAGE;
 			}
 		}
 		else {
-			$this->request_type = WeixinTools::TYPE_UNKNOWN_ERROR;
+			$this->request_type = Weixinutil::TYPE_UNKNOWN_ERROR;
 		}
 		weixin_log('==========================================');
 		weixin_log('token: '.$token);
