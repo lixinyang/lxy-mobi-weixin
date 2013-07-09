@@ -23,8 +23,11 @@ class Weixin extends CI_Controller {
 				$keyword = $tools->message->content;
 				if (in_array($keyword, array('help','/h','/?','?','/help')))
 					echo $this->show_help($tools);
-				else 
-					echo $this->show_help($tools);
+				elseif (in_array($keyword, array('报故障','故障','保障','报修')))
+					echo $this->handle_bug_report($rools);
+				else {
+					echo $tools->reply_text('不识别你的输入：“'.$keyword.'”，请输入“?”获得帮助');
+				}
 				break;
 			
 			case Weixinutil::TYPE_SUBSCRIBE:
@@ -53,7 +56,7 @@ class Weixin extends CI_Controller {
 	 * 显示帮助
 	 */
 	function show_help($tools) {
-		return $tools->reply_text('帮助：\n 1.输入help,?,/h,/? 获得本帮助\n 2.');
+		return $tools->reply_text('帮助：\n 1.输入help,?,/h,/? 获得本帮助\n 2.输入“报修”进入友宝故障报告平台');
 	}
 	
 	/**
