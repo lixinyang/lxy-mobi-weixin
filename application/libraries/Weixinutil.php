@@ -55,6 +55,18 @@ class Weixinutil
 		weixin_log('request type: '.$this->request_type);
 		weixin_log("raw post: \n".$raw_post);
 	}
+	
+	function mock($token) {
+		$this->token = $token;
+		$this->request_type = Weixinutil::TYPE_NEW_MESSAGE;
+		$this->message = new Message("<xml><ToUserName><![CDATA[gh_e4a32c1fd463]]></ToUserName>
+<FromUserName><![CDATA[oiSrojugJ9-RYcd8z6tCLf40UEUs]]></FromUserName>
+<CreateTime>1373347830</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[hi]]></Content>
+<MsgId>5898484015882567728</MsgId>
+</xml>");
+	}
 
 	/**
 	 * http://mp.weixin.qq.com/wiki/index.php?title=%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3%E6%8C%87%E5%8D%97#.E7.BD.91.E5.9D.80.E6.8E.A5.E5.85.A5

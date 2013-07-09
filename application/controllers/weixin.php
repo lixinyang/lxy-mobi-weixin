@@ -15,14 +15,16 @@ class Weixin extends CI_Controller {
 	{
 		//echo 'hi weixin';
 		$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
+		//$this->weixinutil->mock('weixiao');
 		$tools = $this->weixinutil;
+		//echo print_r($tools);
 		switch ($tools->request_type) {
 			case Weixinutil::TYPE_NEW_MESSAGE:
 				$keyword = $tools->message->content;
 				if (in_array($keyword, array('help','/h','/?','?','/help')))
 					echo $this->show_help($tools);
-				elseif (in_array($keyword, array('报故障','故障','保障')))
-					echo $this->handle_bug_report($rools);
+				else 
+					echo $this->show_help($tools);
 				break;
 			
 			case Weixinutil::TYPE_SUBSCRIBE:
