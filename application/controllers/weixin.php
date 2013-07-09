@@ -17,14 +17,16 @@ class Weixin extends CI_Controller {
 		$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
 		//$this->weixinutil->mock('weixiao');
 		$tools = $this->weixinutil;
-		//echo print_r($tools);
+		//$tools->message->content = '报修';
 		switch ($tools->request_type) {
 			case Weixinutil::TYPE_NEW_MESSAGE:
 				$keyword = $tools->message->content;
-				if (in_array($keyword, array('help','/h','/?','?','/help')))
+				if (in_array($keyword, array('help','/h','/?','?','/help','？','/？'))) {
 					echo $this->show_help($tools);
-				elseif (in_array($keyword, array('报故障','故障','保障','报修')))
-					echo $this->handle_bug_report($rools);
+				}
+				elseif (in_array($keyword, array('报故障','故障','保障','报修','报障'))) {
+					echo $this->handle_bug_report($tools);
+				}
 				else {
 					echo $tools->reply_text('不识别你的输入：“'.$keyword.'”，请输入“?”获得帮助');
 				}
@@ -62,8 +64,15 @@ class Weixin extends CI_Controller {
 	/**
 	 * 友宝故障报告平台的入口
 	 */
-	function handle_bug_report($rools) {
-		return $tools->reply_article('友宝故障报告平台','', 'http://weixiao001.com/img/focus01.png', 'http://weixiao001.com/?wxid='.$tools->message->from_username);
+	function handle_bug_report($tools) {
+		$reply = $tools->reply_article();
+		$reply->add_article('友宝故障报告平台','', 'http://weixiao001.com/img/focus01.png', 'http://weixiao001.com/?wxid='.$tools->message->from_username);
+		$reply->add_article('报故障','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/report?wxid='.$tools->message->from_username);
+		$reply->add_article('绑定VMS账号','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/user?wxid='.$tools->message->from_username);
+		$reply->add_article('我报的故障','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/list?wxid='.$tools->message->from_username);
+		$reply->add_article('我的图库','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/album?wxid='.$tools->message->from_username);
+		$reply->add_article('使用说明','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/help?wxid='.$tools->message->from_username);
+		return $reply->get_reply_string();
 	}
 }
 

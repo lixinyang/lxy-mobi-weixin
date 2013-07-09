@@ -100,28 +100,9 @@ class Weixinutil
 	 * reply a article message to user.
 	 * http://mp.weixin.qq.com/wiki/index.php?title=%E6%B6%88%E6%81%AF%E6%8E%A5%E5%8F%A3%E6%8C%87%E5%8D%97#.E5.9B.9E.E5.A4.8D.E5.9B.BE.E6.96.87.E6.B6.88.E6.81.AF
 	 */
-	public function reply_article($title, $description, $pic_url, $url)
+	public function reply_article()
 	{
-		$time = time();
-        $textTpl = "<xml><ToUserName><![CDATA[%s]]></ToUserName>
-<FromUserName><![CDATA[%s]]></FromUserName>
-<CreateTime>%s</CreateTime>
-<MsgType><![CDATA[news]]></MsgType>
-<ArticleCount>1</ArticleCount>
- <Articles>
- <item>
- <Title><![CDATA[%s]]></Title> 
- <Description><![CDATA[%s]]></Description>
- <PicUrl><![CDATA[%s]]></PicUrl>
- <Url><![CDATA[%s]]></Url>
- </item>
- </Articles>
-<FuncFlag>0</FuncFlag>
-</xml>";             
-        $resultStr = sprintf($textTpl, $this->message->from_username, $this->message->to_username, $time, $title, $description, $pic_url, $url);
-		weixin_log("reply_text: \n".$resultStr);
-        return $resultStr;
-
+        return new ArticleReply($this->message);
 	}
 
 	/**
@@ -230,5 +211,44 @@ class Message{
 		}
 	}
 }
+
+/**
+ * 
+ */
+class ArticleReply{
+	private $the_string;
+	private $article_count = 0;
+	
+	function __construct($input_msg) {
+		$time = time();
+        $textTpl = "<xml><ToUserName><![CDATA[%s]]></ToUserName>
+<FromUserName><![CDATA[%s]]></FromUserName>
+<CreateTime>%s</CreateTime>
+<MsgType><![CDATA[news]]></MsgType>
+<Articles>";             
+        $this->the_string = sprintf($textTpl, $input_msg->from_username, $input_msg->to_username, $time);
+	}
+	
+	function add_article($title, $description, $pic_url, $url) {
+		$this->article_count++;
+        $textTpl = "
+ <item>
+ <Title><![CDATA[%s]]></Title> 
+ <Description><![CDATA[%s]]></Description>
+ <PicUrl><![CDATA[%s]]></PicUrl>
+ <Url><![CDATA[%s]]></Url>
+ </item>
+";             
+        $this->the_string .= sprintf($textTpl, $title, $description, $pic_url, $url);
+    }
+	
+	function get_reply_string() {
+		$this->the_string .= " </Articles><ArticleCount>".$this->article_count."</ArticleCount><FuncFlag>0</FuncFlag></xml>";
+		weixin_log("reply_text: \n".$this->the_string);
+        return $this->the_string;
+	}
+
+}
+
 
 ?>
