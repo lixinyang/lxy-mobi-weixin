@@ -15,8 +15,8 @@ class Weixin extends CI_Controller {
 	public function index()
 	{
 		//echo 'hi weixin';
-		$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
-		//$this->weixinutil->mock('weixiao');
+		//$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
+		$this->weixinutil->mock('weixiao');
 		$tools = $this->weixinutil;
 		//$tools->message->content = '报修';
 		switch ($tools->request_type) {
@@ -72,6 +72,12 @@ class Weixin extends CI_Controller {
 	 */
 	function handle_pic_upload($tools) {
 		//echo 'here:'.$tools->message->from_username.', '.$tools->message->pic_url;
+		//$timestamp = time();
+		//$filename = dirname(__FILE__).'/../../upload/'.$timestamp.'.jpg';
+		//$cmd = '/usr/local/bin/wget -q -O '.$filename.' '.$tools->message->pic_url;
+		//exec($cmd, $res);
+		//echo $cmd;
+		//echo print_r($res);
 		$this->reportdb->album_add($tools->message->from_username.'', $tools->message->pic_url);
 		$reply = $tools->reply_article();
 		$reply->add_article('图片上传成功','', 'http://weixiao001.com/img/focus01.png', 'http://lxy.mobi/lxy-mobi-weixin/report/album/'.$tools->message->from_username);

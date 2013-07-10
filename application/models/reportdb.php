@@ -70,10 +70,11 @@ class Reportdb extends CI_Model
 		return $query->result();
 	}
 
-	function album_add($wxid, $url) {
+	function album_add($wxid, $wx_url, $local_path='') {
 		$data = array(
 			'wxid' => $wxid,
-			'url' => $url,
+			'url' => $wx_url,
+			'local_path' => $local_path,
 			'create_time' => date("Y-m-d H:i:s")
 		);
 		$this->db->insert(TBL_ALBUM, $data);
