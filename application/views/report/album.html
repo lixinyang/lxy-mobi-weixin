@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="utf-8" />
+  <title>友宝故障报告平台</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> 
+  <link rel="stylesheet" media="all" href="<?php echo $base_url;?>/ui/style.css" type="text/css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><a href="index.html"><img src="http://img.ubox.cn/web/img/logo/logo.png" alt="友宝" height="40"/></a></div>
+      <div class="options">
+      	<ul>
+      		<li>搜索</li>
+      		<li>菜单</li>
+      	</ul>
+      </div>
+      <div class="clear"></div>
+	    <div class="search-box">
+	    	<form action="#">
+	    		<input type="text" placeholder="请输入搜索条件" />
+	    		<input type="submit" value="Go" />
+	    	</form>
+	    	<div class="clear"></div>
+	    </div>
+	    <nav class="vertical menu">
+	    	<ul>
+	            <li><a href="index.html">Home 1</a></li>
+	            <li><a href="index.html">Home 2</a></li>
+	            <li><a href="index.html">Home 3</a></li>
+	            <li><a href="index.html">Home 4</a></li>
+        	</ul>
+	    </nav>
+    </header>
+    
+        
+    <div class="content">
+<?php 
+//echo print_r($album);
+foreach($album as $count => $pic) { ?>
+    <article class="underline">
+		<div class="post-preview">
+			<a href="<?php echo $pic->url;?>" target="_blank"><img src="<?php echo $pic->url;?>" alt="微信上传图" height="100" width="100"/></a>
+		</div>
+		<div class="post-content">
+			<h2><a href="basic_markup.html">上传于：<?php echo $pic->create_time;?></a></h2>
+			<p>......</p>
+			<div class="date"><span><?php echo $pic->create_time;?></span></div>
+		</div>
+		<div class="clear"></div>
+    </article>
+<?php
+}
+?>
+
+    <article class="underline">
+		<div class="post-preview">
+			<a href="basic_markup.html"><img src="http://lorempixel.com/48/48/nightlife/3" alt="title of the image"/></a>
+		</div>
+		<div class="post-content">
+			<h2><a href="basic_markup.html">Post with title, preview, excerpt and date</a></h2>
+			<p>I wish! It's a nickel. Good man. Nixon's pro-war and pro-family. Hey, what kinda party is this? There's no booze and only one hooker.</p>
+			<div class="date"><span>20 mar 2012</span></div>
+		</div>
+		<div class="clear"></div>
+    </article>
+	<div class="paginate">
+		<ul>
+			<li><span class="current">1</span></li>
+			<li><a href="#2" class="inactive">2</a></li>
+			<li><a href="#" class="inactive">3</a></li>
+			<li><a href="#">&#62;</a></li>
+			<li><a href="#">&raquo;</a></li>
+		</ul>
+	</div>
+    </div>
+    <footer>
+    	<p>&copy; lxy.mobi 2013. Design by <a href="http://mobifreaks.com" target="_blank">Mobifreaks</a></p>
+    </footer>
+  </div>
+ 
+<script src="<?php echo $base_url;?>/ui/js/jquery.min.js"></script>
+<script type="text/javascript">
+   window.addEventListener("load",function() {
+	  // Set a timeout...
+	  setTimeout(function(){
+	    // Hide the address bar!
+	    window.scrollTo(0, 1);
+	  }, 0);
+	});
+   $('.search-box,.menu' ).hide();   
+   $('.options li:first-child').click(function(){	
+   		$(this).toggleClass('active'); 	
+   		$('.search-box').toggle();        			
+   		$('.menu').hide();  		
+   		$('.options li:last-child').removeClass('active'); 
+   });
+   $('.options li:last-child').click(function(){
+   		$(this).toggleClass('active');      			
+   		$('.menu').toggle();  		
+   		$('.search-box').hide(); 
+   		$('.options li:first-child').removeClass('active'); 		
+   });
+   $('.content').click(function(){
+   		$('.search-box,.menu' ).hide();   
+   		$('.options li:last-child, .options li:first-child').removeClass('active');
+   });
+</script>
+</body>
+</html>

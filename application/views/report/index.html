@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>友宝故障报告平台</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>af/css/icons.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo $base_url;?>af/css/af.ui.css" />
+        <script type="text/javascript" charset="utf-8" src="<?php echo $base_url;?>af/ui/af.ui.min.js"></script>
+        <script type="text/javascript">
+            var webRoot = "./";
+            $.ui.useOSThemes=false;
+            $.ui.isAjaxApp=false;
+            $.ui.ready(function () {
+                //alert('hi');
+                $.ui.isAjaxApp=false;
+            });
+        </script>
+    </head>
+    <body>
+        <div id="afui">
+            <div id="header">
+            	<h1 id="pageTitle">友宝</h1>
+            </div>
+            
+            <div id="content">
+                <!-- here is where you can add your panels -->
+                <div title='友宝故障报告平台' id="main" class="panel" selected="true">
+                	<ul>
+                		<li><a class="icon active" href="./all">列表</a></li>
+                	<?php 
+                		//echo print_r($album);
+                		foreach($album as $count => $pic) {
+                			echo '<li><a class="icon active" href="'.$pic->url.'"><img src="'.$pic->url.'" /></a></li>';
+                		}
+                	?>
+                	</ul>
+                </div>
+            </div>
+            
+            <!-- bottom navbar. Add additional tabs here -->
+            <div id="navbar">
+                <div class="horzRule"></div>
+                <a href="#main" id='navbar_home' class='icon home'>home</a>
+                <a href="#main" id='navbar_home' class='icon home'>home</a>
+                <a href="#main" id='navbar_home' class='icon home'>home</a>
+            </div>
+        </div>
+    </body>
+</html>
