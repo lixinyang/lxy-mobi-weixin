@@ -61,18 +61,18 @@ class Weixinutil
 		$this->request_type = Weixinutil::TYPE_NEW_MESSAGE;
 		$this->message = new Message("<xml><ToUserName><![CDATA[gh_e4a32c1fd463]]></ToUserName>
 <FromUserName><![CDATA[oiSrojugJ9-RYcd8z6tCLf40UEUs]]></FromUserName>
-<CreateTime>1373347830</CreateTime>
-<MsgType><![CDATA[text]]></MsgType>
-<Content><![CDATA[hi]]></Content>
-<MsgId>5898484015882567728</MsgId>
-</xml>");
-		$this->message = new Message("<xml><ToUserName><![CDATA[gh_e4a32c1fd463]]></ToUserName>
-<FromUserName><![CDATA[oiSrojugJ9-RYcd8z6tCLf40UEUs]]></FromUserName>
 <CreateTime>1373363549</CreateTime>
 <MsgType><![CDATA[image]]></MsgType>
 <PicUrl><![CDATA[http://mmsns.qpic.cn/mmsns/S5ZiaMicnbfmRP7Iiauc72eWIM3F28yDicb0bartVYicyVpFOE6Rpxib0jgQ/0]]></PicUrl>
 <MsgId>5898551528473493573</MsgId>
 <MediaId><![CDATA[IJq3G8D6h7IjxndJVY1xKMGoVr9sJEI-WTXZsNgMNvVw7NlKaHoDt0W4n-GQwbYh]]></MediaId>
+</xml>");
+		$this->message = new Message("<xml><ToUserName><![CDATA[gh_e4a32c1fd463]]></ToUserName>
+<FromUserName><![CDATA[oiSrojugJ9-RYcd8z6tCLf40UEUs]]></FromUserName>
+<CreateTime>1373347830</CreateTime>
+<MsgType><![CDATA[text]]></MsgType>
+<Content><![CDATA[hi]]></Content>
+<MsgId>5898484015882567728</MsgId>
 </xml>");
 	}
 

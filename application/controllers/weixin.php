@@ -15,8 +15,8 @@ class Weixin extends CI_Controller {
 	public function index()
 	{
 		//echo 'hi weixin';
-		//$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
-		$this->weixinutil->mock('weixiao');
+		$this->weixinutil->parse('weixiao', $_GET, isset($GLOBALS["HTTP_RAW_POST_DATA"])?$GLOBALS["HTTP_RAW_POST_DATA"]:"");
+		//$this->weixinutil->mock('weixiao');
 		$tools = $this->weixinutil;
 		//$tools->message->content = '报修';
 		switch ($tools->request_type) {
@@ -92,10 +92,8 @@ class Weixin extends CI_Controller {
 		$reply = $tools->reply_article();
 		$reply->add_article('友宝故障报告平台','', 'http://weixiao001.com/img/focus01.png', 'http://lxy.mobi/lxy-mobi-weixin/report/index/'.$tools->message->from_username);
 		$reply->add_article('报故障','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/report/'.$tools->message->from_username);
-		$reply->add_article('绑定VMS账号','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/user/'.$tools->message->from_username);
 		$reply->add_article('我报的故障','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/all/'.$tools->message->from_username);
-		$reply->add_article('我的图库','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/album/'.$tools->message->from_username);
-		$reply->add_article('使用说明','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/help/'.$tools->message->from_username);
+		$reply->add_article('使用说明','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/index/'.$tools->message->from_username);
 		return $reply->get_reply_string();
 	}
 }
