@@ -31,9 +31,11 @@ class Report extends CI_Controller {
 
 	/**
 	 */
-	public function user()
+	public function user($wxid,$action='show')
 	{
-		echo 'hehe';
+		$this->load_user($wxid);
+
+		$this->load->view('report/user.html',array('base_url'=>base_url(), 'user'=>$this->user, 'wxid'=>$wxid));
 	}
 
 	/**
