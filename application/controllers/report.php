@@ -9,7 +9,7 @@ class Report extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->helper(array('url','html','form'));
-		$this->load->model('reportdao');
+		$this->load->model('reportdb');
 	}
 	
 	/**
@@ -17,7 +17,7 @@ class Report extends CI_Controller {
 	 */
 	private function load_user($wxid) {
 		$this->wxid = $wxid;
-		$this->user = $this->report_model->user_get($wxid);
+		$this->user = $this->reportdb->user_get($wxid);
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Report extends CI_Controller {
 	public function album($wxid)
 	{
 		$this->load_user($wxid);
-		$album = $this->reportdao->album_list($wxid);
+		$album = $this->reportdb->album_list($wxid);
 
 		$this->load->view('report/album.html',array('base_url'=>base_url(), 'album'=>$album));
 	}

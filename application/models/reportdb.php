@@ -5,7 +5,7 @@
  * @author lxy
  *
  */
-class Report_model extends CI_Model
+class Reportdb extends CI_Model
 {
 	
 	function __construct()

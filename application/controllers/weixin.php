@@ -7,7 +7,7 @@ class Weixin extends CI_Controller {
 		parent::__construct();
 		$this->load->helper(array('url','html','form'));
 		$this->load->library(array('weixinutil'));
-		$this->load->model('reportdao');
+		$this->load->model('reportdb');
 	}
 
 	/**
@@ -72,7 +72,7 @@ class Weixin extends CI_Controller {
 	 */
 	function handle_pic_upload($tools) {
 		//echo 'here:'.$tools->message->from_username.', '.$tools->message->pic_url;
-		$this->reportdao->album_add($tools->message->from_username.'', $tools->message->pic_url);
+		$this->reportdb->album_add($tools->message->from_username.'', $tools->message->pic_url);
 		$reply = $tools->reply_article();
 		$reply->add_article('图片上传成功','', 'http://weixiao001.com/img/focus01.png', 'http://lxy.mobi/lxy-mobi-weixin/report/album/'.$tools->message->from_username);
 		$reply->add_article('我的图库','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/album/'.$tools->message->from_username);
