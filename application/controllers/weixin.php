@@ -106,10 +106,10 @@ class Weixin extends CI_Controller {
 	 */
 	function handle_ubox_con($tools) {
 		$reply = $tools->reply_article();
-		$reply->add_article('友宝 - 我们重新定义了便利店','', 'http://weixiao001.com/img/focus01.png', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
-		$reply->add_article('互联网大会购物区','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/ubox/con/'.$tools->message->from_username);
-		$reply->add_article('友宝带您体验微信O2O支付','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/ubox/weixin/'.$tools->message->from_username);
-		$reply->add_article('关于友宝','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
+		$reply->add_article('友宝 - 我们重新定义了便利店','', base_url().'/img/banner.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
+		$reply->add_article('互联网大会购物区','', base_url().'/img/logo.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/con/'.$tools->message->from_username);
+		$reply->add_article('友宝带您体验微信O2O支付','', base_url().'/img/logo.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/weixin/'.$tools->message->from_username);
+		$reply->add_article('关于友宝','', base_url().'/img/logo.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
 		return $reply->get_reply_string();
 	}
 }
