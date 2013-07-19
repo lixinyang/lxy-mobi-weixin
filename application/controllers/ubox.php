@@ -24,6 +24,22 @@ class Ubox extends CI_Controller {
 	{
 		$this->load->view('ubox/con.html',array('base_url'=>base_url()));
 	}
+	public function con1()
+	{
+		$this->load->view('ubox/con1.html',array('base_url'=>base_url()));
+	}
+	public function con2()
+	{
+		$this->load->view('ubox/con2.html',array('base_url'=>base_url()));
+	}
+	public function con3()
+	{
+		$this->load->view('ubox/con3.html',array('base_url'=>base_url()));
+	}
+	public function con4()
+	{
+		$this->load->view('ubox/con4.html',array('base_url'=>base_url()));
+	}
 
 	/**
 	 */
