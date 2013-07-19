@@ -32,6 +32,9 @@ class Weixin extends CI_Controller {
 					elseif (in_array($keyword, array('报故障','故障','保障','报修','报障'))) {
 						echo $this->handle_bug_report($tools);
 					}
+					elseif (in_array($keyword, array('友宝','互联网大会','大会'))) {
+						echo $this->handle_ubox_con($tools);
+					}
 					else {
 						echo $tools->reply_text('不识别你的输入：“'.$keyword.'”，请输入“?”获得帮助');
 					}
@@ -39,7 +42,8 @@ class Weixin extends CI_Controller {
 				break;
 			
 			case Weixinutil::TYPE_SUBSCRIBE:
-				echo $tools->reply_article('微笑网公益购物','微笑网公益购物是一个有亲朋好友发起的民间公益项目，weixiao001.com 购物同时做公益', 'http://weixiao001.com/img/focus01.png', 'http://weixiao001.com/?wxid='.$tools->message->from_username);
+				//echo $tools->reply_article('微笑网公益购物','微笑网公益购物是一个有亲朋好友发起的民间公益项目，weixiao001.com 购物同时做公益', 'http://weixiao001.com/img/focus01.png', 'http://weixiao001.com/?wxid='.$tools->message->from_username);
+				echo $this->handle_ubox_con($tools);
 				break;
 			
 			case Weixinutil::TYPE_UNSUBSCRIBE:
@@ -94,6 +98,18 @@ class Weixin extends CI_Controller {
 		$reply->add_article('报故障','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/report/'.$tools->message->from_username);
 		$reply->add_article('我报的故障','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/all/'.$tools->message->from_username);
 		$reply->add_article('使用说明','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/report/index/'.$tools->message->from_username);
+		return $reply->get_reply_string();
+	}
+
+	/**
+	 * 友宝-互联网大会版
+	 */
+	function handle_ubox_con($tools) {
+		$reply = $tools->reply_article();
+		$reply->add_article('友宝 - 我们重新定义了便利店','', 'http://weixiao001.com/img/focus01.png', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
+		$reply->add_article('互联网大会购物区','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/ubox/con/'.$tools->message->from_username);
+		$reply->add_article('友宝带您体验微信O2O支付','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/ubox/weixin/'.$tools->message->from_username);
+		$reply->add_article('关于友宝','', 'http://lxy.mobi/favicon.ico', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
 		return $reply->get_reply_string();
 	}
 }

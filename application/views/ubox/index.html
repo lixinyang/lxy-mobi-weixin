@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="utf-8" />
+  <title>友宝故障报告平台</title>
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0" /> 
+  <link rel="stylesheet" media="all" href="<?php echo $base_url;?>/ui/style.css" type="text/css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo"><a href="index.html"><img src="http://img.ubox.cn/web/img/logo/logo.png" alt="友宝" height="40"/></a></div>
+      <div class="options">
+      	<ul>
+      		<li>搜索</li>
+      		<li>菜单</li>
+      	</ul>
+      </div>
+      <div class="clear"></div>
+	    <div class="search-box">
+	    	<form action="#">
+	    		<input type="text" placeholder="请输入搜索条件" />
+	    		<input type="submit" value="Go" />
+	    	</form>
+	    	<div class="clear"></div>
+	    </div>
+	    <nav class="vertical menu">
+	    	<ul>
+	            <li><a href="index.html">Home 1</a></li>
+	            <li><a href="index.html">Home 2</a></li>
+	            <li><a href="index.html">Home 3</a></li>
+	            <li><a href="index.html">Home 4</a></li>
+        	</ul>
+	    </nav>
+    </header>
+    
+        
+    <div class="content">
+    <article class="underline">
+			<h2>功能列表</h2>
+			<ul>
+				<li><a href="../report">报 故 障</a></li>
+				<li><a href="../all">我报的故障</a></li>
+				<li><a href="../album">我的图库</a></li>
+				<li><a href="../user"><?php echo empty($user)?'绑定VMS账户':'VMS账户: '.$user->uboxid;?></a></li>
+			</ul>
+    </article>
+    <article class="underline">
+			<h2>使用帮助</h2>
+			<p>....</p>
+    </article>
+    </div>
+    <footer>
+    	<p>&copy; lxy.mobi 2013. Design by <a href="http://mobifreaks.com" target="_blank">Mobifreaks</a></p>
+    </footer>
+  </div>
+ 
+<script src="<?php echo $base_url;?>/ui/js/jquery.min.js"></script>
+<script type="text/javascript">
+   window.addEventListener("load",function() {
+	  // Set a timeout...
+	  setTimeout(function(){
+	    // Hide the address bar!
+	    window.scrollTo(0, 1);
+	  }, 0);
+	});
+   $('.search-box,.menu' ).hide();   
+   $('.options li:first-child').click(function(){	
+   		$(this).toggleClass('active'); 	
+   		$('.search-box').toggle();        			
+   		$('.menu').hide();  		
+   		$('.options li:last-child').removeClass('active'); 
+   });
+   $('.options li:last-child').click(function(){
+   		$(this).toggleClass('active');      			
+   		$('.menu').toggle();  		
+   		$('.search-box').hide(); 
+   		$('.options li:first-child').removeClass('active'); 		
+   });
+   $('.content').click(function(){
+   		$('.search-box,.menu' ).hide();   
+   		$('.options li:last-child, .options li:first-child').removeClass('active');
+   });
+</script>
+</body>
+</html>
