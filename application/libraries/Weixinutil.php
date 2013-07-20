@@ -40,8 +40,11 @@ class Weixinutil
 			if($this->message->msg_type == Message::TYPE_TEXT and $this->message->content == 'Hello2BizUser') {
 				$this->request_type = Weixinutil::TYPE_SUBSCRIBE;
 			}
-			elseif ($this->message->msg_type == Message::TYPE_EVENT and $this->message->event = 'unsubscribe') {
+			elseif ($this->message->msg_type == Message::TYPE_EVENT and $this->message->event == 'unsubscribe') {
 				$this->request_type = Weixinutil::TYPE_UNSUBSCRIBE;
+			}
+			elseif ($this->message->msg_type == Message::TYPE_EVENT and $this->message->event == 'subscribe') {
+				$this->request_type = Weixinutil::TYPE_SUBSCRIBE;
 			}
 			else {
 				$this->request_type = Weixinutil::TYPE_NEW_MESSAGE;
