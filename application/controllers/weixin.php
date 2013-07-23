@@ -110,6 +110,7 @@ class Weixin extends CI_Controller {
 		$reply->add_article('2013互联网大会微信购物区','', 'http://lxy.mobi/lxy-mobi-weixin/img/logo.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/con1/'.$tools->message->from_username);
 		$reply->add_article('友宝带您体验微信O2O支付','', 'http://lxy.mobi/lxy-mobi-weixin/img/logo.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/weixin/'.$tools->message->from_username);
 		$reply->add_article('关于友宝','', 'http://lxy.mobi/lxy-mobi-weixin/img/logo.jpg', 'http://lxy.mobi/lxy-mobi-weixin/ubox/index/'.$tools->message->from_username);
+		$reply->add_article('还能再见父母几面？','', 'http://lxy.mobi/lxy-mobi/ui/images/lxy.png', 'http://lxy.mobi/lxy-mobi/parents.html');
 		return $reply->get_reply_string();
 	}
 }
